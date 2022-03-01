@@ -1,25 +1,56 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from 'react'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { ContainerApp, ListContainer, ContainerTitle, Span, ListWrapper } from './styled_app'
+import api from './services/api'
 
 function App() {
+  const [user, setUser] = useState([])
+
+  async function getAll() {
+    const { data } = await api.get('/')
+
+    setUser(data)
+  }
+
+  useEffect(() => {
+    getAll()
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <ContainerApp>
+      <br />
+      <br />
+      <ContainerTitle>
+        <Link style={{ textDecoration: 'none', fontFamily: 'Hubballi' }} to="/register">
+          Cadastro
+        </Link>
+      </ContainerTitle>
+
+      <br />
+      <br />
+      <br />
+      {user.map((item) => {
+        return (
+          <ListContainer key={item.id}>
+            <ListWrapper>
+              <Span>
+                <strong style={{ marginRight: '7px' }}>Nome: </strong> {item.name}
+              </Span>
+
+              <Span>
+                <strong style={{ marginRight: '7px' }}>Email:</strong>
+                {item.email}
+              </Span>
+              <br />
+              <br />
+              <br />
+            </ListWrapper>
+          </ListContainer>
+        )
+      })}
+    </ContainerApp>
+  )
 }
 
-export default App;
+export default App
