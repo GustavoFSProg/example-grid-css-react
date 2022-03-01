@@ -36,8 +36,6 @@ function Regsiter() {
         Home
       </Link>
       <br />
-      <br />
-      <br />
 
       <ListContainer>
         <form

@@ -45,4 +45,11 @@ export const ContainerTitle = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 2rem;
+  margin-bottom: 40px;
+  margin-top: 27px;
+
+  @media screen and (max-width: 800px) {
+    margin-bottom: 20px;
+    margin-top: -10px;
+  }
 `

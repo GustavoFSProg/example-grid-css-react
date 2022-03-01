@@ -28,8 +28,7 @@ function App() {
       </ContainerTitle>
 
       <br />
-      <br />
-      <br />
+
       {user.map((item) => {
         return (
           <ListContainer key={item.id}>
